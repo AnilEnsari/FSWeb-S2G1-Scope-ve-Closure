@@ -105,8 +105,8 @@ function macSonucu(takimSkoru, q) {
   }
 
   return { EvSahibi: homeTeam, KonukTakim: awayTeam };
-  console.log(macSonucu(takimSkoru, 4));
 }
+console.log(macSonucu(takimSkoru, 4));
 /*Kodunuzu buraya yazınız*/
 
 /* Zorlayıcı Görev 4: periyotSkoru()
@@ -123,9 +123,13 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 function periyotSkoru(takimSkoru) {
-  /*Kodunuzu buraya yazınız*/
+  let homeTeam2 = 0;
+  homeTeam2 += takimSkoru();
+  let awayTeam2 = 0;
+  awayTeam2 += takimSkoru();
+  return { EvSahibi: homeTeam2, KonukTakim: awayTeam2 };
 }
-
+console.log(periyotSkoru(takimSkoru));
 /* Zorlayıcı Görev 5: skorTabelasi() 
 Aşağıdaki skorTabelasi() fonksiyonunu kullanarak aşağıdakileri yapınız:
   1. İlk parametre olarak Görev 4'te oluşturduğumuz 'periyotSkoru'nu bir değişken olarak almalı
@@ -157,10 +161,26 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
+function skorTabelasi(periyotSkoru, takimSkoru, q) {
+  let homeTeamScores = 0;
+  let awayTeamScores = 0;
+  const Board = [];
+  for (let i = 1; i <= q; i++) {
+    let skor = periyotSkoru(takimSkoru);
+    homeTeamScores += skor.EvSahibi;
+    awayTeamScores += skor.KonukTakim;
+    const qBoard = `${i}. Periyot: Ev Sahibi ${skor.EvSahibi} - Konuk Takım ${skor.KonukTakim}`;
+    Board.push(qBoard);
+  }
+  const finalBoard = `Maç Sonucu: Ev Sahibi ${homeTeamScores} - Konuk Takım ${awayTeamScores}`;
+  Board.push(finalBoard);
+  return Board;
+  if (homeTeamScores === awayTeamScores) {
+    return (q = q + 1);
+  }
 }
 
+console.log(skorTabelasi(periyotSkoru, takimSkoru, 4));
 /* Aşağıdaki satırları lütfen değiştirmeyiniz*/
 function sa() {
   console.log("Kodlar çalışıyor");
